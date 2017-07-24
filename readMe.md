@@ -1,56 +1,74 @@
-Product List : iOS Integration
+# Product List : iOS Integration
 
-This project contains simple iOS integration of Product List with swift 3.1
-Getting Started
+This project contains simple iOS integration of Open Weather API with swift 3.1
+
+## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-Prerequisites
 
-OS : macOS Sierra : 10.12.4 Xcode : 8.3.1 Swift : 3.1
-Installing
+### Prerequisites
 
-Clone the repo and Double click on the ProductList.xcworkspace and open with Xcode 8.3.1 only using Swift 3.1
-Running the tests
+OS : macOS Sierra : 10.12.4 
+Xcode : 8.3.1 
+Swfit : 3.1 
 
-Use standard Apple Xcode XC test framework to run the test Use Command + U to run the rest The unit test are writing inside WeatherForecastTests.swift
-Unit Test Details
 
-example 
+### Installing
+
+Clone the repo and 
+Double click on the ProductList.xcworkspace and open with Xcode 8.3.1 only using Swift 3.1 
+
+## Running the tests
+
+Use standard Apple Xcode XC test framework to run the test 
+Use Command + U to run the rest 
+The unit test are writing inside WeatherForecastTests.swift
+
+### Libraries 
+
+SDWebImage is used for caching product images
+
+### Unit Test Details
+
+testCurrencyFormatter : 
+1. will test the currency format to string from NSNumber input.
+2. returns nil if unwanted data is the input. 
 
 testProductListLoaded
-
-    Will test if the data loaded inside the ProductService.json is not nil.
+1. Will test if the data loaded inside the ProductService.json is not nil. 
 
 testParseData
+1. Will test all the parsing features of the code. 
+2. Will test if the productCahce / weather Data model contains the expected data. 
 
-    Will test all the parsing features of the code.
-    Will test if the productCahce / Product Data model contains the expected data.
+### And coding style tests
 
-And coding style tests
+1. use camel case for variable names 
+2. use swifty way of function declaration 
+3. all constants should be capitalised 
+4. all optional should be safely unwrapped using if lets to avoid crashes. 
+5. 3 Tier Architecture : 
+1. API Services : responsible for API calls and parsing of json / raw data from open weather API services. 
+2. Data Manager : responsible for data manuputaion methods and loading stubbed data if required. 
+3. Data Model : responsible for storing weather data model. 
+4. view :- responsbile for presentation of views
+5. view controller :- responsible for binding views and data models together.  
 
-    use camel case for variable names
-    use swifty way of function declaration
-    all constants should be capitalised
-    all optional should be safely unwrapped using if lets to avoid crashes.
-    3 Tier Architecture :
-        API Services : responsible for API calls and parsing of json / raw data from open product API services.
-        Data Manager : responsible for data manuputaion methods and loading stubbed data if required.
-        Data Model : responsible for storing weather data model.
-        view :- responsbile for presentation of views
-        view controller :- responsible for binding views and data models together.
+NSNotification is used for updated data models / views once API services returns back successful data.  
 
-NSNotification is used for updated data models / views once API services returns back successful data.
+Singleton Objects for caching data 
 
-Singleton Objects for caching data
-Deployment
+## Deployment
 
-Simple Xcode Run using iOS simulators on iPhones only.
-Built With
+Simple Xcode Run using iOS simulators on iPhones only. 
 
-Xcode 8.3.1
-Versioning
+## Built With
+Xcode 8.3.1 
 
-1.0
-Authors
+## Versioning
+1.0 
+
+## Authors
 
 djrecker
+

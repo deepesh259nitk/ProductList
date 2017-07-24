@@ -21,7 +21,7 @@ class ProductListTests: XCTestCase {
         
     }
 
-    func testWeatherListLoaded(){
+    func testProductListLoaded(){
         
         let api = ProductService()
         ProductService.json = nil
