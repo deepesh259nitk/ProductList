@@ -1,6 +1,6 @@
 # Product List : iOS Integration
 
-This project contains simple iOS integration of Open Weather API with swift 3.1
+This project contains simple iOS integration of Open Product  API with swift 3.1
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ Double click on the ProductList.xcworkspace and open with Xcode 8.3.1 only using
 
 Use standard Apple Xcode XC test framework to run the test 
 Use Command + U to run the rest 
-The unit test are writing inside WeatherForecastTests.swift
+The unit test are writing inside ProductListTests.swift
 
 ### Libraries 
 
@@ -39,7 +39,7 @@ testProductListLoaded
 
 testParseData
 1. Will test all the parsing features of the code. 
-2. Will test if the productCahce / weather Data model contains the expected data. 
+2. Will test if the productCache / Product  Data model contains the expected data. 
 
 ### And coding style tests
 
@@ -48,9 +48,9 @@ testParseData
 3. all constants should be capitalised 
 4. all optional should be safely unwrapped using if lets to avoid crashes. 
 5. 3 Tier Architecture : 
-1. API Services : responsible for API calls and parsing of json / raw data from open weather API services. 
+1. API Services : responsible for API calls and parsing of json / raw data from open Product  API services. 
 2. Data Manager : responsible for data manuputaion methods and loading stubbed data if required. 
-3. Data Model : responsible for storing weather data model. 
+3. Data Model : responsible for storing Product  data model. 
 4. view :- responsbile for presentation of views
 5. view controller :- responsible for binding views and data models together.  
 
