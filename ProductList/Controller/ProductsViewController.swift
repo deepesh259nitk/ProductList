@@ -13,16 +13,14 @@ class ProductsViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let identifier = "CellIdentifier"
-    var productsList = [Product]()
+    fileprivate let identifier = "CellIdentifier"
+    fileprivate var productsList = [Product]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.dataSource = self
-        
         ProductDetailsDataManager.sharedObject.requestData()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(productListRefreshed(_:)), name: NSNotification.Name(rawValue: ProductService.ProductListRefreshedNotification), object: nil)
     }
     
@@ -40,30 +38,19 @@ class ProductsViewController: UIViewController {
 extension ProductsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return self.productsList.count
-        
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! ProductCell
-        
         let product = self.productsList[indexPath.row]
-        
         let name = product.productName
         let price = product.price
         
         cell.productName.text = name
-        
         if let price = NumberUtilities.formatPriceWithComma(price) {
-            
-            cell.price.text = "£ \(String(describing: price))"
-            
+            cell.price.text = price
         }
         
         let imageUrl = URL(string: self.productsList[indexPath.row].imageURL)

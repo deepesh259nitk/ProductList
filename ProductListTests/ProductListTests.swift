@@ -95,9 +95,9 @@ class ProductListTests: XCTestCase {
         let price2 : NSNumber = 45000
         let price3 : NSNumber = 345343
         
-        XCTAssertEqual("24,500", NumberUtilities.formatPriceWithComma(price1))
-        XCTAssertEqual("45,000", NumberUtilities.formatPriceWithComma(price2))
-        XCTAssertEqual("345,343", NumberUtilities.formatPriceWithComma(price3))
+        XCTAssertEqual("£ 24,500", NumberUtilities.formatPriceWithComma(price1))
+        XCTAssertEqual("£ 45,000", NumberUtilities.formatPriceWithComma(price2))
+        XCTAssertEqual("£ 345,343", NumberUtilities.formatPriceWithComma(price3))
         
     }
     
