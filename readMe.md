@@ -1,6 +1,6 @@
 # Product List : iOS Integration
 
-This project contains simple iOS integration of Open Product  API with swift 3.1
+This project contains simple iOS integration of Open Product API with swift 4.0
 
 ## Getting Started
 
