@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import YOOX
+@testable import SHOPME
 
 class ProductListTests: XCTestCase {
     

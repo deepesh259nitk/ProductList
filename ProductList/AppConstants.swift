@@ -9,7 +9,6 @@
 import Foundation
 
 class AppConstants {
-    
     // make below false to run in live mode
     static var isSTUBBED = false
 }

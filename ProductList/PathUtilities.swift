@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 typealias JSONDict = [String : AnyObject]
 typealias JSONDicts = [JSONDict]
 

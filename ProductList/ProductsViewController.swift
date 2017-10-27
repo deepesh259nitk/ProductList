@@ -23,12 +23,16 @@ class ProductsViewController: UIViewController {
         
         ProductDetailsDataManager.sharedObject.requestData()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ProductsViewController.productListRefreshed(_:)), name: NSNotification.Name(rawValue: ProductService.ProductListRefreshedNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(productListRefreshed(_:)), name: NSNotification.Name(rawValue: ProductService.ProductListRefreshedNotification), object: nil)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
 }
@@ -65,24 +69,20 @@ extension ProductsViewController: UICollectionViewDataSource {
         let imageUrl = URL(string: self.productsList[indexPath.row].imageURL)
         cell.imageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "loading"))
         cell.setFavouriteImage(self.productsList, index: indexPath.row)
-    
+        
         return cell
     }
     
-    func productListRefreshed(_ notification : Notification){
+    @objc func productListRefreshed(_ notification : Notification){
         
         ProductDetailsDataManager.sharedObject.populateData()
-        
         if let productList = ProductDetailsDataManager.sharedObject.cachedData(){
-            
             self.productsList = productList
         }
-        
         DispatchQueue.main.async {
-            
             self.collectionView.reloadData()
         }
-        
     }
+
 }
 

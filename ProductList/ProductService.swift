@@ -13,7 +13,6 @@ import Foundation
 
 let debugFileName = "categories"
 let imageUrl = "https://cache.net-a-porter.com/images/products/%@/%@_fr_sl.jpg"
-
 let ProductSummariesKey = "summaries"
 let ProductNameKey = "name"
 let ProductAmountKey = "amount"
