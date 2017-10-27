@@ -9,58 +9,38 @@
 import Foundation
 
 class ProductDetailsDataManager {
-    
     private var debugFileName = "categories"
     static let sharedObject = ProductDetailsDataManager()
-    var productCache : [Product]?
-    
-    func requestData(){
-        
+    var productCache: [Product]?
+    func requestData() {
         let api = ProductService()
         api.loadProducts(nil)
-        
         if ProductService.json != nil {
             self.populateData()
         }
-        
     }
-    
-    func populateData(){
-        
+    func populateData() {
         let api = ProductService()
         if AppConstants.isSTUBBED {
-            
-            if let stubbedData = self.debugSettings(){
+            if let stubbedData = self.debugSettings() {
                 self.productCache = api.parseData(stubbedData)
             }
-            
         } else {
-            
             if let jsonData = ProductService.json {
                 self.productCache = api.parseData(jsonData)
             }
         }
     }
-    
-    func cachedData()-> [Product]?{
-        
+    func cachedData() -> [Product]? {
         if let productCache = productCache {
             return productCache
         }
-        
         return nil
-        
     }
-    
-    func debugSettings()-> JSONDict?
-    {
-        if let dict = PathUtilities.findJSON(debugFileName)
-        {
+    func debugSettings() -> JSONDict? {
+        if let dict = PathUtilities.findJSON(debugFileName) {
             return dict
         }
         return nil
     }
-    
 }
-
-

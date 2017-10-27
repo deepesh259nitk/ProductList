@@ -9,9 +9,7 @@
 import Foundation
 
 class NumberUtilities {
-    
-    static func formatPriceWithComma(_ price: NSNumber)-> String? {
-       return "£ \(price.formattedWithSeparator)"
+    static func formatPriceWithComma(_ price: NSNumber) -> String? {
+        return "£ \(price.formattedWithSeparator)"
     }
 }
-
