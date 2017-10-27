@@ -8,15 +8,16 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-OS : macOS Sierra : 10.12.4 
-Xcode : 8.3.1 
-Swfit : 3.1 
+OS : macOS Sierra : 10.12.6
+Xcode : 9.0.1
+Swfit : 4.0
 
 
 ### Installing
 
 Clone the repo and 
-Double click on the ProductList.xcworkspace and open with Xcode 8.3.1 only using Swift 3.1 
+Double click on the ProductList.xcworkspace and open with Xcode 9.0.1 only using Swift 4.0
+Install SwiftLint using brew or comment the script for siwftlint in the build scripts
 
 ## Running the tests
 
@@ -47,7 +48,7 @@ testParseData
 2. use swifty way of function declaration 
 3. all constants should be capitalised 
 4. all optional should be safely unwrapped using if lets to avoid crashes. 
-5. 3 Tier Architecture : 
+5. 3 Tier Architecture :
 1. API Services : responsible for API calls and parsing of json / raw data from open Product  API services. 
 2. Data Manager : responsible for data manuputaion methods and loading stubbed data if required. 
 3. Data Model : responsible for storing Product  data model. 
@@ -66,7 +67,7 @@ Simple Xcode Run using iOS simulators on iPhones only.
 Xcode 8.3.1 
 
 ## Versioning
-1.0 
+2.0
 
 ## Authors
 
