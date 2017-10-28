@@ -15,9 +15,9 @@ class ProductDetailsDataManager {
     func requestData() {
         let api = ProductService()
         api.loadProducts(nil)
-//        if ProductService.json != nil {
-//            self.populateData()
-//        }
+        if ProductService.json != nil {
+            self.populateData()
+        }
     }
     func populateData() {
         let api = ProductService()
