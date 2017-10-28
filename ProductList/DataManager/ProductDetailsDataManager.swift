@@ -15,19 +15,19 @@ class ProductDetailsDataManager {
     func requestData() {
         let api = ProductService()
         api.loadProducts(nil)
-        if ProductService.json != nil {
-            self.populateData()
-        }
+//        if ProductService.json != nil {
+//            self.populateData()
+//        }
     }
     func populateData() {
         let api = ProductService()
         if AppConstants.isSTUBBED {
             if let stubbedData = self.debugSettings() {
-                self.productCache = api.parseData(stubbedData)
+                self.productCache = api.parseProductsData(stubbedData)
             }
         } else {
             if let jsonData = ProductService.json {
-                self.productCache = api.parseData(jsonData)
+                self.productCache = api.parseProductsData(jsonData)
             }
         }
     }

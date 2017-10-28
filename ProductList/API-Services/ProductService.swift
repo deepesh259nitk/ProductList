@@ -12,12 +12,6 @@ import Foundation
 // http://api.net-a-porter.com/NAP/GB/en/60/0/summaries?categoryIds=2
 
 let debugFileName = "categories"
-let imageUrl = "https://cache.net-a-porter.com/images/products/%@/%@_fr_sl.jpg"
-let productSummariesKey = "summaries"
-let productNameKey = "name"
-let productAmountKey = "amount"
-let productPriceKey = "price"
-let productIDKey = "id"
 
 class ProductService {
     static var json: JSONDict?
@@ -26,12 +20,13 @@ class ProductService {
     var products = [Product]()
     func loadProducts(_ completion: ((AnyObject) -> Void)!) {
         let session = URLSession.shared
-        if let productsUrl = URL(string: ProductService.UrlString) {
-            let task = session.dataTask(with: productsUrl,
+        guard let productsUrl = URL(string: ProductService.UrlString) else { return }
+        let task = session.dataTask(with: productsUrl,
                                         completionHandler: { (data, _, _)
                                             -> Void in do {
+                                                guard let data = data else { return }
                                                 let JSON = try JSONSerialization.jsonObject(with:
-                                                    data!, options: JSONSerialization.ReadingOptions(rawValue: 0))
+                                                    data, options: JSONSerialization.ReadingOptions(rawValue: 0))
                                                 guard let JSONDictionary: JSONDict = JSON as? JSONDict else {
                                                     print("Not a Dictionary")
                                                     return
@@ -45,7 +40,6 @@ class ProductService {
                                             }
             })
             task.resume()
-        }
     }
     func debugSettings() -> NSDictionary? {
         if let dict = PathUtilities.findJSON(debugFileName) {
@@ -53,25 +47,14 @@ class ProductService {
         }
         return nil
     }
-    func parseData(_ jsonData: JSONDict) -> [Product]? {
+    func parseProductsData(_ jsonData: JSONDict) -> [Product]? {
         if let debugData = jsonData[productSummariesKey] as? NSArray {
-            var image = ""
             for item in debugData {
-                var eachItem = item as? JSONDict
-                if let name = eachItem?[productNameKey] as? String,
-                    let id = eachItem?[productIDKey], let pid = id as? NSNumber,
-                    let price = eachItem?[productPriceKey],
-                    let amount = price[productAmountKey],
-                    let newAmount = amount {
-                    let pidStr = String(format: "%@", pid)
-                    if let amt = newAmount as? NSNumber {
-                        image = String(format: imageUrl, pidStr, pidStr )
-                        let product = Product(pname: name, pid: pidStr, price: amt, pimage: image)
-                        products.append(product)
-                    }
+                guard let productJsonDict = item as? JSONDict else { return [Product]() }
+                    let product = Product(json: productJsonDict)
+                    products.append(product)
                 }
             }
-        }
         return products
     }
 }
