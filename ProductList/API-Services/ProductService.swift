@@ -8,9 +8,6 @@
 
 import Foundation
 
-//clothing API url
-// http://api.net-a-porter.com/NAP/GB/en/60/0/summaries?categoryIds=2
-
 let debugFileName = "categories"
 
 class ProductService {

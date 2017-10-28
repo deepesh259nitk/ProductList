@@ -47,16 +47,27 @@ testParseData
 1. use camel case for variable names 
 2. use swifty way of function declaration 
 3. all constants should be capitalised 
-4. all optional should be safely unwrapped using if lets to avoid crashes. 
+4. all optional should be safely unwrapped using if lets to avoid crashes.
 5. 3 Tier Architecture :
-1. API Services : responsible for API calls and parsing of json / raw data from open Product  API services. 
-2. Data Manager : responsible for data manuputaion methods and loading stubbed data if required. 
-3. Data Model : responsible for storing Product  data model. 
+1. API Services : responsible for API calls and parsing of json / raw data from open Product  API services.
+2. Data Manager : responsible for data manuputaion methods and loading stubbed data if required.
+3. Data Model : responsible for storing Product  data model.
 4. view :- responsbile for presentation of views
-5. view controller :- responsible for binding views and data models together.  
+5. view controller :- responsible for binding views and data models together.
+
+## Best Practices
+
+1. Don’t have bad variable names , use meaningful names.
+2. Don’t have long viewDidload methods , separate them into different methods ( you can use extract method in Xcode 9 )
+3. Use proper Access Specifiers for function and classes
+4. Delete all the print statements
+5. Use global string variables for cell identifiers etc
+6. Incorrect Naming conventions like capital for Class and Struct names
+7. All variable names should be camel case
+8. Use proper types for variables like age should be int, currency should be big int all in pennies. which will help for calculation and help in meaningful values
+9. Use SwiftLint for clean code / conventions and spacing.
 
 NSNotification is used for updated data models / views once API services returns back successful data.  
-
 Singleton Objects for caching data 
 
 ## Deployment
