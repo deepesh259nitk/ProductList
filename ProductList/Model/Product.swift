@@ -38,7 +38,8 @@ struct Product {
             self.productId = productId
             self.imageURL = String(format: imageUrl, productId, productId)
             if let pounds = PriceUtilities.pounds(forPennies: amount),
-                self.currencyType == String(describing: Currency.GBP) {  //Convert to Switch case in future to support multiple Currencies.
+                self.currencyType == String(describing: Currency.GBP) {
+                //Convert to Switch case in future to support multiple Currencies.
                 self.formattedPrice = PriceUtilities.formatWithPoundSign(pounds)
             }
         }
