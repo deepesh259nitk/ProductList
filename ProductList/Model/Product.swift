@@ -16,12 +16,17 @@ let productPriceKey = "price"
 let productIDKey = "id"
 let prodctCurrencyKey = "currency"
 
+enum Currency: String { // Add more currencies types here
+    case GBP
+}
+
 struct Product {
     var productName: String
     var productId: Int?
     var price: Int64?
     var imageURL: String?
     var currencyType: String?
+    var formattedPrice: String?
     init(json: [String: Any]) {
         self.productName = json[productNameKey] as? String ?? ""
         if let currencyJson = json[productPriceKey] as? JSONDict,
@@ -32,6 +37,10 @@ struct Product {
             self.currencyType = currencyType
             self.productId = productId
             self.imageURL = String(format: imageUrl, productId, productId)
+            if let pounds = PriceUtilities.pounds(forPennies: amount),
+                self.currencyType == String(describing: Currency.GBP) {  //Convert to Switch case in future to support multiple Currencies.
+                self.formattedPrice = PriceUtilities.formatWithPoundSign(pounds)
+            }
         }
     }
 }

@@ -41,11 +41,10 @@ extension ProductsViewController: UICollectionViewDataSource {
                                                             for: indexPath) as? ProductCell else { return dummyCell }
         let product = self.productsList[indexPath.row]
         cell.productName.text = product.productName
-        if let penny = product.price, let pounds = PriceUtilities.pounds(forPennies: penny),
-            let formattedPrice = PriceUtilities.formatWithPoundSign(pounds) {
+        if let formattedPrice = product.formattedPrice {
             cell.price.text = formattedPrice
         }
-        if let imageUrl = self.productsList[indexPath.row].imageURL {
+        if let imageUrl = product.imageURL {
             cell.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "loading"))
         }
         cell.setFavouriteImage(self.productsList, index: indexPath.row)
