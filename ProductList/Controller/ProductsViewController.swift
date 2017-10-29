@@ -40,14 +40,14 @@ extension ProductsViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,
                                                             for: indexPath) as? ProductCell else { return dummyCell }
         let product = self.productsList[indexPath.row]
-        let name = product.productName
-        let price = product.price
-        cell.productName.text = name
-        if let price = NumberUtilities.formatPriceWithComma(price) {
-            cell.price.text = price
+        cell.productName.text = product.productName
+        if let penny = product.price, let pounds = PriceUtilities.pounds(forPennies: penny),
+            let formattedPrice = PriceUtilities.formatWithPoundSign(pounds) {
+            cell.price.text = formattedPrice
         }
-        let imageUrl = URL(string: self.productsList[indexPath.row].imageURL)
-        cell.imageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "loading"))
+        if let imageUrl = self.productsList[indexPath.row].imageURL {
+            cell.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "loading"))
+        }
         cell.setFavouriteImage(self.productsList, index: indexPath.row)
         return cell
     }

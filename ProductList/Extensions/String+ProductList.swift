@@ -1,5 +1,5 @@
 //
-//  Integer+ProductList.swift
+//  Int64+ProductList.swift
 //  ProductList
 //
 //  Created by ITRMG on 2017-27-10.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSNumber {
+extension String {
     var formattedWithSeparator: String {
         return Formatter.withSeparator.string(for: self) ?? ""
     }

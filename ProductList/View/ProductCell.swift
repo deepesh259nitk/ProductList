@@ -27,14 +27,13 @@ class ProductCell: UICollectionViewCell {
             }
         }
     }
-    func setTagForFavourite(_ pid: String) {
-        if let tagValue = Int(pid) {
-            favButton.tag = tagValue
-            favButtonSelected.tag = tagValue
-        }
+    func setTagForFavourite(_ productId: Int) {
+        favButton.tag = Int(productId)
+        favButtonSelected.tag = Int(productId)
     }
     func setFavouriteImage(_ products: [Product], index: Int) {
-        setTagForFavourite(products[index].pid)
+        guard let productId = products[index].productId else { return }
+        setTagForFavourite(productId)
         if FavouriteProducts.sharedInstance.products.count == 0 {
             return
         }

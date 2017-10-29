@@ -8,24 +8,30 @@
 
 import Foundation
 
-let imageUrl = "https://cache.net-a-porter.com/images/products/%@/%@_fr_sl.jpg"
+let imageUrl = "https://cache.net-a-porter.com/images/products/%d/%d_fr_sl.jpg"
 let productSummariesKey = "summaries"
 let productNameKey = "name"
 let productAmountKey = "amount"
 let productPriceKey = "price"
 let productIDKey = "id"
+let prodctCurrencyKey = "currency"
 
 struct Product {
     var productName: String
-    var pid: String
-    var price: NSNumber = 0
-    var imageURL: String
+    var productId: Int?
+    var price: Int64?
+    var imageURL: String?
+    var currencyType: String?
     init(json: [String: Any]) {
         self.productName = json[productNameKey] as? String ?? ""
-        self.pid = String(format: "%@", json[productIDKey] as? NSNumber ?? -1)
-        if let amountKey = json[productPriceKey] as? JSONDict, let amount = amountKey[productAmountKey] as? NSNumber {
+        if let currencyJson = json[productPriceKey] as? JSONDict,
+            let amount = currencyJson[productAmountKey] as? Int64,
+            let currencyType =  currencyJson[prodctCurrencyKey] as? String,
+            let productId = json[productIDKey] as? Int {
             self.price = amount
+            self.currencyType = currencyType
+            self.productId = productId
+            self.imageURL = String(format: imageUrl, productId, productId)
         }
-        self.imageURL = String(format: imageUrl, pid, pid )
     }
 }
